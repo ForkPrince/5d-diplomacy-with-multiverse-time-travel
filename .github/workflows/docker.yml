@@ -36,13 +36,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: (server) Extract Docker metadata for server
+      - name: (server) Extract Docker metadata
         id: meta-server
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/server
 
-      - name: (server) Build and push Docker image - server
+      - name: (server) Build and push Docker image
         id: build-server
         uses: docker/build-push-action@v6
         with:
@@ -53,13 +53,13 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: (client) Extract Docker metadata for client
+      - name: (client) Extract Docker metadata
         id: meta-client
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/client
 
-      - name: (client) Build and push Docker image - client
+      - name: (client) Build and push Docker image
         id: build-client
         uses: docker/build-push-action@v6
         with:
